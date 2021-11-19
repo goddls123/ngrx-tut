@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+header {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  width: 50%;
+}
+
+header .input-box {
+  width: 80%;
+  height: 30px;
+}

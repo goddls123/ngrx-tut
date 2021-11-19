@@ -1,0 +1,15 @@
+<footer class="footer">
+  <span class="todo-count" data-component="counter">{{
+    length + " Item Left"
+  }}</span>
+  <ul class="filters" data-component="filters">
+    <li (click)="changeFilter('All')"><a href="#/">All</a></li>
+    <li (click)="changeFilter('Acitve')"><a href="#/active">Active</a></li>
+    <li (click)="changeFilter('Completed')">
+      <a href="#/completed">Completed</a>
+    </li>
+  </ul>
+  <button class="clear-completed" (click)="deleteTodo()">
+    Clear completed
+  </button>
+</footer>

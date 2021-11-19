@@ -1,0 +1,10 @@
+<header class="header">
+  <h1>Todos</h1>
+  <input
+    class="new-todo"
+    placeholder="입력"
+    autofocus
+    [(ngModel)]="todo"
+    (keypress)="addTodo($event, todo)"
+  />
+</header>
