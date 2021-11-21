@@ -1,0 +1,86 @@
+<div class="header-bar">
+  <h1>
+    {{
+      mainPage === "event"
+        ? "이벤트"
+        : mainPage === "billiard-info"
+        ? "당구장 소식"
+        : "빌리아이 소식"
+    }}
+  </h1>
+</div>
+
+<div class="main" [ngSwitch]="subPage">
+  <ng-container *ngSwitchCase="'list'">
+    <table *ngIf="totalItems">
+      <thead [ngClass]="{ off: !totalItems || totalItems === 0 }">
+        <th class="number">번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>날짜</th>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let notice of noticies; let i = index"
+          class="notice"
+          (click)="gotoDetail(notice)"
+        >
+          <td class="number">
+            {{ totalItems - i - (currentPage - 1) * itemsPerPage }}
+          </td>
+          <td class="title">
+            <span class="text">{{ notice.subject }}</span
+            ><span *ngIf="notice.comment > 0" class="review-count">{{
+              "[" + notice.comment + "]"
+            }}</span>
+          </td>
+          <td class="creater">
+            <!-- <app-avatar
+              class="user-profile"
+              [isLessonCreator]="false"
+              [style]="{ width: '30px', height: '30px', 'font-size': '13px' }"
+              [userInfo]="notice.created.user"
+            ></app-avatar> -->
+            <img
+              [src]="notice.created?.user || '/assets/image/profile-none.svg'"
+              alt=""
+            />
+            <span class="user-name">{{ notice.created.user.name }}</span>
+          </td>
+          <td class="creation-date">
+            <!-- {{ utilService.elapsed(notice.creationDate) }} -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!totalItems || totalItems == 0" class="empty-list">
+      <i class="img-lesson-empty-list"></i>
+      <span>{{
+        mainPage === "event"
+          ? "이벤트"
+          : mainPage === "billiard-info"
+          ? "당구장 소식"
+          : "빌리아이 소식"
+      }}</span>
+    </div>
+
+    <div class="bottom-area">
+      <!-- <arv-pagination
+        *ngIf="totalItems && totalItems > 0"
+        [(currentPage)]="currentPage"
+        [totalPage]="totalPage"
+      ></arv-pagination> -->
+      <button class="main-btn" (click)="createNotice()">작성하기</button>
+    </div>
+  </ng-container>
+  <!-- <user-notice-detail
+    *ngSwitchCase="'detail'"
+    [notice]="selectedNotice"
+    [mainPage]="mainPage"
+  ></user-notice-detail> -->
+  <!-- <user-notice-edit
+    *ngSwitchCase="'edit'"
+    [notice]="selectedNotice"
+    [mainPage]="mainPage"
+  ></user-notice-edit> -->
+</div>

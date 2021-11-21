@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
-
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodolistComponent } from './todolist/todolist.component';
@@ -15,6 +19,9 @@ import { FooterComponent } from './todolist/footer/footer.component';
 import { MainComponent } from './todolist/main/main.component';
 import { filterReducer } from './reducer/filter.reducer';
 import { scoreboardReducer } from './reducer/scorboard.reducer';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NoticeComponent } from './notice/notice.component';
+import { ApiService } from './service/api.service';
 
 @NgModule({
   declarations: [
@@ -23,12 +30,15 @@ import { scoreboardReducer } from './reducer/scorboard.reducer';
     HeaderComponent,
     FooterComponent,
     MainComponent,
+    NavbarComponent,
+    NoticeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
+
     StoreModule.forRoot({
       todoList: todoReducer,
       filter: filterReducer,
@@ -39,8 +49,10 @@ import { scoreboardReducer } from './reducer/scorboard.reducer';
       logOnly: environment.production,
       autoPause: true,
     }),
+
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
