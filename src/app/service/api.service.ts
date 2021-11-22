@@ -182,27 +182,18 @@ export class ApiService {
       );
     });
   }
-  getEvents(currentPage: number, itemsPerPage: number = 12) {
-    return new Promise((resolve, reject) => {
-      this.callApi(
-        REST_SERVICE_URL +
-          API_SERVICE_PATH +
-          '/getEvents/' +
-          currentPage +
-          '/' +
-          itemsPerPage,
-        'get',
-        null,
-        null
-      ).subscribe(
-        (result) => {
-          resolve(result);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
-    });
+  getEvents(currentPage: number, itemsPerPage: number = 12): Observable<any> {
+    return this.callApi(
+      REST_SERVICE_URL +
+        API_SERVICE_PATH +
+        '/getEvents/' +
+        currentPage +
+        '/' +
+        itemsPerPage,
+      'get',
+      null,
+      null
+    );
   }
   setEvent(event: any) {
     return new Promise((resolve, reject) => {

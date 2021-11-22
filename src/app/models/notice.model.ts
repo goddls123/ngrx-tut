@@ -11,3 +11,9 @@ export class Notice {
   viewCount: number;
   coverSource: string;
 }
+
+export interface NoticeState {
+  noticies: Notice[];
+  selectedNotice: Notice;
+  currentPage: Number;
+}

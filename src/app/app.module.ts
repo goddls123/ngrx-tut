@@ -22,6 +22,9 @@ import { scoreboardReducer } from './reducer/scorboard.reducer';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NoticeComponent } from './notice/notice.component';
 import { ApiService } from './service/api.service';
+import { EffectsModule } from '@ngrx/effects';
+import { NoticeEffects } from './effects/notice.effects';
+import { noticeReducer } from './reducer/notice.reducer';
 
 @NgModule({
   declarations: [
@@ -43,13 +46,14 @@ import { ApiService } from './service/api.service';
       todoList: todoReducer,
       filter: filterReducer,
       game: scoreboardReducer,
+      noticies: noticeReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
       autoPause: true,
     }),
-
+    EffectsModule.forRoot([NoticeEffects]),
     HttpClientModule,
   ],
   providers: [ApiService],

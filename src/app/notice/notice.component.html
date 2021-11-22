@@ -21,7 +21,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let notice of noticies; let i = index"
+          *ngFor="let notice of noticies | async; let i = index"
           class="notice"
           (click)="gotoDetail(notice)"
         >
