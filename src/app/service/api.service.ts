@@ -31,26 +31,17 @@ export class ApiService {
   }
 
   getBilliaiInfos(currentPage: number, itemsPerPage: number = 12) {
-    return new Promise((resolve, reject) => {
-      this.callApi(
-        REST_SERVICE_URL +
-          API_SERVICE_PATH +
-          '/getBilliaiInfos/' +
-          currentPage +
-          '/' +
-          itemsPerPage,
-        'get',
-        null,
-        null
-      ).subscribe(
-        (result) => {
-          resolve(result);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
-    });
+    return this.callApi(
+      REST_SERVICE_URL +
+        API_SERVICE_PATH +
+        '/getBilliaiInfos/' +
+        currentPage +
+        '/' +
+        itemsPerPage,
+      'get',
+      null,
+      null
+    );
   }
   setBilliaiInfo(BillaiInfo: any) {
     return new Promise((resolve, reject) => {
@@ -107,26 +98,17 @@ export class ApiService {
     });
   }
   getBilliardInfos(currentPage: number, itemsPerPage: number = 12) {
-    return new Promise((resolve, reject) => {
-      this.callApi(
-        REST_SERVICE_URL +
-          API_SERVICE_PATH +
-          '/getBilliardInfos/' +
-          currentPage +
-          '/' +
-          itemsPerPage,
-        'get',
-        null,
-        null
-      ).subscribe(
-        (result) => {
-          resolve(result);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
-    });
+    return this.callApi(
+      REST_SERVICE_URL +
+        API_SERVICE_PATH +
+        '/getBilliardInfos/' +
+        currentPage +
+        '/' +
+        itemsPerPage,
+      'get',
+      null,
+      null
+    );
   }
   setBilliardInfo(BillardInfo: any) {
     return new Promise((resolve, reject) => {
@@ -247,26 +229,17 @@ export class ApiService {
     });
   }
   getComments(noticeId: string, pageNum: number = 0) {
-    return new Promise((resolve, reject) => {
-      this.callApi(
-        REST_SERVICE_URL +
-          API_SERVICE_PATH +
-          '/getComments/' +
-          noticeId +
-          '/' +
-          pageNum,
-        'get',
-        null,
-        null
-      ).subscribe(
-        (result) => {
-          resolve(result);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
-    });
+    return this.callApi(
+      REST_SERVICE_URL +
+        API_SERVICE_PATH +
+        '/getComments/' +
+        noticeId +
+        '/' +
+        pageNum,
+      'get',
+      null,
+      null
+    );
   }
   getReplies(commentId: string) {
     return new Promise((resolve, reject) => {

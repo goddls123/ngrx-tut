@@ -1,0 +1,30 @@
+<!--
+ *  Copyright (c) 2020 Smartworks.net, Inc. & AIROV Tech. All Rights Reserved
+ *
+ *  Use of this software is controlled by the terms and conditions found in the
+ *  license agreement under which this software has been supplied.
+ *------------------------------------------------------------------------------
+ *
+ *  Source Name:   	pagination.directive.html
+ *  Description:    Custom pagination directive 웹페이지
+ *  Authors:        J.H. Lee
+ *  Update History:
+ *                  2021.07.15 : Created by J.H. Lee
+ *
+ -->
+<div class="page-area">
+  <div *ngIf="totalPage.length > 1" class="previous" (click)="onPreviousPage()">
+    <i class="btn-previous"></i>
+  </div>
+  <div
+    class="btn-number"
+    *ngFor="let page of totalPage"
+    [ngClass]="{'on': currentPage === page}"
+    (click)="selectPage(page)"
+  >
+    {{page}}
+  </div>
+  <div *ngIf="totalPage.length > 1" class="next" (click)="onNextPage()">
+    <i class="btn-next"></i>
+  </div>
+</div>

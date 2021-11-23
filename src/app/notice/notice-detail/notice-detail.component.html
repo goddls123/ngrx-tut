@@ -1,0 +1,219 @@
+<!--
+ *  Copyright (c) 2020 Smartworks.net, Inc. & AIROV Tech. All Rights Reserved
+ *
+ *  Use of this software is controlled by the terms and conditions found in the
+ *  license agreement under which this software has been supplied.
+ *------------------------------------------------------------------------------
+ *
+ *  Source Name:   	notice-detail.component.html
+ *  Description:    비전클라우드 user notice detail 화면의 웹페이지
+ *  Authors:        J.H. Lee
+ *  Update History:
+ *                  2021.07.15 : Created by J.h. Lee
+ *
+ -->
+<header>
+  <div class="top">
+    <div class="title">{{ notice.subject }}</div>
+    <div class="view-count">{{ "조회수" + notice?.viewCount }}</div>
+  </div>
+  <div class="bottom">
+    <div class="user">
+      <!-- <app-avatar class="user-profile" [isLessonCreator]="false" [style]="{width:'40px', height:'40px', 'font-size':'13px'}" [userInfo]="notice.created.user" ></app-avatar> -->
+      <div class="text">
+        <div class="user-name">{{ notice.created.user.name }}</div>
+        <div class="creation-date">
+          {{ notice.creationDate | date: "yy.MM.dd HH:mm" }}
+        </div>
+      </div>
+    </div>
+    <!-- <div class="button-area">
+            <button *ngIf="currentUser && (currentUser.id == notice.created.user.id)" (click)="movePage('edit')" class="modify">{{'common.button.modify' | translate}}</button>
+            <button *ngIf="currentUser && (currentUser.id == notice.created.user.id)" class="delete" (click)="deleteNotice(notice)">{{'common.button.delete' | translate}}</button>
+            <button class="main-btn" (click)="movePage('list')">{{'common.button.list' | translate}}</button>
+        </div> -->
+  </div>
+</header>
+
+<main>
+  <iframe class="detail"></iframe>
+  <div class="comment-area">
+    <div class="top-area">
+      <i class="icon-comment"></i>
+      <div class="review-count">
+        댓글 갯수<span>{{ " " + notice.comment }}</span>
+      </div>
+    </div>
+    <ul class="comment-list">
+      <li
+        *ngFor="let comment of commentList; index as commentIndex"
+        class="comment"
+      >
+        <div class="user">
+          <div class="front-area">
+            <!-- <app-avatar class="user-profile" [isLessonCreator]="false" [style]="{width:'30px', height:'30px', 'font-size':'13px'}" [userInfo]="comment.created.user" ></app-avatar> -->
+            <span class="user-name">{{ comment.created.user.name }}</span>
+          </div>
+          <!-- <div *ngIf="currentUser && (currentUser.id == comment.created.user.id)" class="button-area">
+                        <button (click)="currentComment=commentIndex;currentReply=-1; editingComment=comment.contents" class="modify">{{'common.button.modify' | translate}}</button>
+                        <button class="delete" (click)="deleteComment(comment)">{{'common.button.delete' | translate}}</button>
+                    </div>                     -->
+        </div>
+        <pre
+          *ngIf="currentComment != commentIndex || currentReply >= 0"
+          class="text"
+          >{{ comment.contents }}</pre
+        >
+        <div
+          *ngIf="currentComment == commentIndex && currentReply < 0"
+          class="my-comment-area"
+        >
+          <!-- <div class="user-name">{{currentUser.name}}</div> -->
+          <textarea
+            name="comment"
+            [ngModel]="editingComment"
+            (keyup)="editingComment = $event.target.value"
+            id="my-comment"
+            placeholder="댓글"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <!-- <div class="button-area">
+                        <button class="cancel" (click)="currentComment=-1;currentReply=-1;editingComment=null">{{'common.button.cancel' | translate}}</button>
+                        <button class="register on"  (click)="updateComment(comment.id , notice.id ,editingComment)">{{'common.button.modify' | translate}}</button>
+                    </div> -->
+        </div>
+        <div class="info">
+          <div class="creation-date">
+            {{ comment.creationDate | date: "yy.MM.dd HH:mm" }}
+          </div>
+          <button
+            class="reply-button"
+            (click)="
+              currentReply = commentIndex; currentComment = -1; myReply = null
+            "
+          >
+            답글달기
+          </button>
+        </div>
+        <div
+          *ngIf="comment.replyCount"
+          class="close-reply {{ comment.more ? 'on' : '' }}"
+          (click)="closeReply(commentIndex)"
+        >
+          <span>답글 갯수</span>
+          <span>{{ " " + comment.replyCount }}</span>
+          <i class="btn-more-comment"></i>
+        </div>
+        <!-- <div *ngIf="currentUser && (currentReply == commentIndex && currentComment < 0)" class="my-reply-area">
+                    <div  class="user-name">{{currentUser.name}}</div>
+                    <textarea name="comment" [ngModel]="myReply" (keyup)="myReply=$event.target.value" id="my-comment" placeholder="답글달기" cols="30" rows="10"></textarea>
+                    <div class="button-area">
+                        <button class="cancel" (click)="currentComment=-1;currentReply = -1;myReply=null">{{'common.button.cancel' | translate}}</button>
+                        <button class="register"  [ngClass]="{'on': myReply }" (click)="registerReply(comment.id ,commentIndex)">{{'common.button.register-comment' | translate}}</button>
+                    </div>
+                </div> -->
+        <!-- <div *ngIf="!currentUser && (currentReply == commentIndex && currentComment < 0) " class="my-reply-area">
+                    <div class="need-log" >{{'notice.text.need-log' | translate}}</div>
+                </div> -->
+        <ul class="reply-list">
+          <li
+            *ngFor="let reply of comment.replyList; index as replyIndex"
+            class="reply"
+          >
+            <div class="user">
+              <div class="front-area">
+                <!-- <app-avatar class="user-profile" [isLessonCreator]="false" [style]="{width:'30px', height:'30px','font-size':'13px'}" [userInfo]="reply.created.user" ></app-avatar> -->
+                <span class="user-name">{{ reply.created.user.name }}</span>
+              </div>
+              <!-- <div *ngIf="currentUser && (currentUser.id == reply.created.user.id)" class="button-area">
+                                <button class="modify" (click)="currentComment=commentIndex;currentReply=replyIndex;myReply=reply.contents">{{'common.button.modify' | translate}}</button>
+                                <button class="delete" (click)="deleteComment(reply)">{{'common.button.delete' | translate}}</button>
+                            </div>                     -->
+            </div>
+            <pre
+              class="text"
+              *ngIf="
+                currentComment != commentIndex || currentReply != replyIndex
+              "
+              >{{ reply.contents }}</pre
+            >
+            <div
+              *ngIf="
+                currentComment == commentIndex && currentReply == replyIndex
+              "
+              class="my-reply-area"
+            >
+              <!-- <div  class="user-name">{{currentUser.name}}</div> -->
+              <textarea
+                name="comment"
+                [ngModel]="myReply"
+                (keyup)="myReply = $event.target.value"
+                id="my-comment"
+                placeholder="답글"
+                cols="30"
+                rows="10"
+              ></textarea>
+              <div class="button-area">
+                <button
+                  class="cancel"
+                  (click)="
+                    currentComment = -1; currentReply = -1; myReply = null
+                  "
+                >
+                  취소
+                </button>
+                <button
+                  class="register on"
+                  (click)="updateComment(reply.id, comment.id, myReply)"
+                >
+                  변경
+                </button>
+              </div>
+            </div>
+            <div class="info">
+              <div class="creation-date">
+                {{ reply.creationDate | date: "yy.MM.dd HH:mm" }}
+              </div>
+            </div>
+          </li>
+          <div
+            *ngIf="
+              !comment.more &&
+              comment.replyCount &&
+              comment.replyCount != comment.replyList.length
+            "
+            class="more-reply"
+            (click)="moreReply(comment.id, commentIndex)"
+          >
+            <i class="more-comment"></i>
+            <span>답글</span>
+            <span> {{ comment.replyCount - comment.replyList.length }}</span>
+            <span> 더보기</span>
+          </div>
+        </ul>
+      </li>
+    </ul>
+    <div class="my-comment-area">
+      <textarea
+        name="comment"
+        [ngModel]="myComment"
+        (keyup)="myComment = $event.target.value"
+        id="my-comment"
+        placeholder="댓글 남기세요"
+        cols="30"
+        rows="10"
+      ></textarea>
+      <button
+        class="register"
+        [ngClass]="{ on: myComment }"
+        (click)="registerComment()"
+      >
+        등록
+      </button>
+    </div>
+    <!-- <div *ngIf="!currentUser"class="my-comment-area">
+            <div class="need-log" >{{'notice.text.need-log' | translate}}</div>
+        </div> -->
+  </div>
+</main>

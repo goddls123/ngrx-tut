@@ -1,0 +1,64 @@
+
+*{
+    box-sizing: border-box;
+}
+main{
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    /* height: calc(100vh - var(--home-margin-top) - var(--header-margin-bottom)*2 - var(--user-profile-width) - 128px); */
+}
+
+main .input-box{
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    border: solid 1px #e0e0e0;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+main input{
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    letter-spacing: -0.02px;
+    color: #262626;
+    border: none;
+    width: 100%;
+    text-indent: 10px;
+}
+
+footer{
+    margin-top: 21px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--home-margin-top);
+}
+footer button{
+    width: 80px;
+    height: 35px;
+    font-size: 13px;
+    font-family: NotoSansCJKkr;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background-color: var(--dark-red);
+    cursor: pointer;
+    border-radius: 8px;
+}
+footer button.cancel{
+    background-color:  #eaeaea;
+    color:  #262626;
+    margin-right: 14px;
+}
+
+
+footer .register.disabled{
+    opacity: 0.3;
+    pointer-events: none;
+}

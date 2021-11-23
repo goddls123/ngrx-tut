@@ -1,0 +1,39 @@
+<main>
+  <div class="input-box">
+    <input
+      type="text"
+      name="title"
+      id=""
+      [(ngModel)]="title"
+      placeholder="{{ 'notice.text.write-titile' | translate }}"
+    />
+  </div>
+  <ckeditor
+    [ngModel]="description"
+    (ngModelChange)="description = $event"
+    #editor
+    [config]="{
+      language: currentUser.locale,
+      height:
+        'calc(100vh - var(--home-margin-top) - var(--header-margin-bottom)*2 - var(--user-profile-width) - 280px)',
+      width: '100%',
+      'border-radius': '5px',
+      border: 'solid 1px #e0e0e0 !important',
+      padding: '10px'
+    }"
+    (ready)="editorReady = true"
+  >
+  </ckeditor>
+</main>
+<footer>
+  <button class="cancel" (click)="cancelEdit()">
+    {{ "common.button.cancel" | translate }}
+  </button>
+  <button
+    class="register"
+    [ngClass]="{ disabled: !description || !title }"
+    (click)="setNewNotice()"
+  >
+    {{ "common.button.register" | translate }}
+  </button>
+</footer>

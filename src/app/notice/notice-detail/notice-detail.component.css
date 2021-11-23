@@ -1,0 +1,347 @@
+/*
+ *  Copyright (c) 2020 Smartworks.net, Inc. & AIROV Tech. All Rights Reserved
+ *
+ *  Use of this software is controlled by the terms and conditions found in the
+ *  license agreement under which this software has been supplied.
+ *------------------------------------------------------------------------------
+ *
+ *  Source Name:   	notice-detail.component.css
+ *  Description:    비전클라우드 user notice detail 화면의 스타일시트
+ *  Authors:        J.H. Lee
+ *  Update History:
+ *                  2021.07.15 : Created by J.h. Lee
+ *
+ */
+*{
+    --comment-margin-left:39.5px;
+}
+header{
+    padding-left: 9px;
+    border-top: solid 1px #e0e0e0;
+
+}
+
+header .top{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 7px;
+    align-items: center;
+}
+header .top .title{
+    font-family: NotoSansCJKkr;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -1.65px;
+    color: #262626;
+}
+
+header .top .view-count{
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    letter-spacing: -1.05px;
+    color: #7a7a7a;
+}
+header .bottom{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    margin-top: 22px;
+    align-items: flex-start;
+
+}
+header .bottom .user{
+    display: flex;
+    align-items: center;
+}
+header .bottom .user-profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 9px;
+    margin-top: 7px;
+}
+header .bottom .text{
+    margin-top: 3px;
+}
+header .bottom .text .user-name{
+    font-family: Noto SansCJKkr;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -1.2px;
+    color: #262626;
+}
+header .bottom .text .creation-date{
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    letter-spacing: -1.05px;
+    color: #7a7a7a;
+}
+header .bottom .button-area{
+    display: flex;
+}
+header .bottom .modify,
+header .bottom .delete{
+    box-sizing: border-box;
+    width: 59px;
+    height: 35px;
+    border-radius: 8px;
+    background-color: #eaeaea;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: -1.13px;
+    color: #262626;
+    margin-right: 11px;
+}
+
+/* header .bottom .view-list{
+    width: 80px;
+    height: 35px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: var(--dark-red);
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: -1.13px;
+    color: #ffffff;
+} */
+
+main .detail{
+    border-top: solid 1px #e0e0e0;
+    width: 100%;
+    padding: 10px 7px;
+}
+main .comment-area{
+    border-top: solid 1px #e0e0e0;
+    width: 100%;
+}
+.comment-area .top-area{
+    margin-top: 9px;
+    margin-left: 9px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-area .top-area .review-count{
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: -1.35px;
+    color: #262626;
+    margin-left: 9px;
+}
+
+.comment-area .comment-list{
+    margin-top: 31px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.comment-area .comment-list .comment:first-child{
+    margin-top: 0px;
+}
+.comment-area .comment-list .comment{
+    margin-top: 11px;
+}
+.comment-area .comment-list .comment:last-child{
+    border: none;
+}
+.comment-area .comment-list .user{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 9px;
+}
+
+.comment-area .comment-list .user-profile{
+    width: 27px;
+    height: 27px;
+    margin-right: 11.5px;
+}
+
+.comment-area .comment-list .user-name{
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -1.2px;
+    color: #262626;
+}
+.comment-area .comment-list .comment .front-area{
+    display: flex;
+    align-items: center;
+}
+.comment-area .comment-list .user .button-area button{
+    width: 59px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #eaeaea;
+    font-family: NotoSansCJKkr;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: -0.98px;
+    color: #262626;
+    margin-left: 11px;
+    box-sizing: border-box;
+}
+.comment-area .comment-list .text{
+    margin-top: 7px;
+    padding-left: calc(var(--comment-margin-left) + 9px);
+    font-family: NotoSansCJKkr;
+    font-size: 15px;
+    letter-spacing: -1.13px;
+    color: #262626;
+}
+
+.comment-area .comment-list .info{
+    margin: 7px 0;
+    padding-left: calc(var(--comment-margin-left) + 9px);
+    display: flex;
+    align-items: center;
+}
+.comment-area .comment-list .info .creation-date,
+.comment-area .comment-list .info .reply-button{
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    letter-spacing: -1.05px;
+    color: #7a7a7a;
+}
+.comment-area .comment-list .close-reply{
+    font-family: NotoSansCJKkr;
+    font-size: 12px;
+    color: var(--dark-red);
+    padding-bottom: 7px;
+    padding-left: calc(var(--comment-margin-left) + 9px);
+    /* border-bottom: solid 1px #e0e0e0; */
+    cursor: pointer;
+}
+.comment-area .comment-list .close-reply span + span{
+    margin-right: 3px;
+    font-weight: bold;
+}
+.comment-area .comment-list .close-reply.on i{
+    transform: rotate(180deg);
+	transition-duration: 0.2s;
+}
+.comment-area .comment-list .close-reply i{
+	transition-duration: 0.2s;
+}
+
+.comment-area .reply-list .reply{
+    padding-left: var(--comment-margin-left);
+    margin-top: 9px;
+}
+
+.comment-area .reply-list .more-reply{
+    cursor: pointer;
+    padding-left: calc(var(--comment-margin-left)*2 + 9px);
+    padding-top: 15px;
+    padding-bottom: 14px;
+    /* border-bottom: solid 1px #e0e0e0; */
+    display: flex;
+    align-items: center;
+}
+.comment-area .reply-list .more-reply i{
+    margin-right: 3px;
+}
+
+.comment-area .reply-list .more-reply span{
+  font-family: NotoSansCJKkr;
+  font-size: 12px;
+  color: var(--dark-red);
+}
+.comment-area .reply-list .more-reply span:nth-child(3){
+    font-weight: bold;
+    margin: 0 3px;
+}
+.comment-area .my-comment-area,
+.comment-area .my-reply-area{
+    height: 137px;
+    padding: 11px 9px 10px 16px;
+    border-radius: 5px;
+    border: solid 1px #e0e0e0;
+    box-sizing: border-box;
+    margin-bottom: var(--home-margin-bottom);
+}
+.comment-area .my-comment-area{
+    margin-bottom: var(--home-margin-top);
+    width: 100%;
+    margin-top: 17px;
+
+}
+.comment-area .my-reply-area{
+    width: calc(100% - var(--comment-margin-left));
+    margin: 10px 0 10px var(--comment-margin-left);
+}
+
+.comment-area .my-comment-area .user-name,
+.reply-area .my-comment-area .user-name{
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -1.2px;
+    color: #262626;
+}
+.comment-area .my-comment-area .button-area{
+    display: flex;
+    justify-content: flex-end;
+}
+.comment-area .my-comment-area textarea,
+.comment-area .my-reply-area textarea{
+    margin-top: 14px;
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    letter-spacing: -1.2px;
+    color: #262626;
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+    height: 41px;
+    border: none;
+}
+.comment-area .my-comment-area .register,
+.comment-area .my-reply-area .register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    align-self: flex-end;
+    width: 79px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: none;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: -0.98px;
+    color: #e5e5e5;
+}
+.comment-area .my-comment-area .cancel,
+.comment-area .my-reply-area .cancel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    align-self: flex-end;
+    width: 79px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: none;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: bold;
+    color: #a7a7a7;
+}
+
+.comment-area .my-comment-area .register.on,
+.comment-area .my-reply-area .register.on
+{
+    background-color: var(--dark-red);
+    color: #ffffff;
+}
+
+.comment-area .my-comment-area .need-log,
+.comment-area .my-reply-area .need-log{
+    font-family: NotoSansCJKkr;
+    font-size: 16px;
+    letter-spacing: -1.2px;
+    color: #262626;
+}

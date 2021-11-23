@@ -1,0 +1,46 @@
+/*
+ *  Copyright (c) 2020 Smartworks.net, Inc. & AIROV Tech. All Rights Reserved
+ *
+ *  Use of this software is controlled by the terms and conditions found in the
+ *  license agreement under which this software has been supplied.
+ *------------------------------------------------------------------------------
+ *
+ *  Source Name:   	pagination.directive.ts
+ *  Description:    Custom pagination directive 스타일 시트
+ *  Authors:        J.H. Lee
+ *  Update History:
+ *                  2021.07.15 : Created by J.H. Lee
+ *
+ */
+
+
+ .page-area{
+     display: flex;
+ }
+ .page-area div{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page-area .next,
+.page-area .prev{
+    /* padding-top: 4px; */
+}
+
+.btn-number{
+    font-family: NotoSansCJKkr;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -1.13px;
+    color: #777777;
+    width: 20px;
+    height: 20px;
+}
+
+.btn-number.on{
+    border-radius: 7px;
+    background-color: #9e2525;
+    color: #ffffff;
+
+}

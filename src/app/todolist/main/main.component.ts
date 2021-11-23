@@ -13,16 +13,8 @@ import { getTodos } from '../../reducer/todo.reducer';
 })
 export class MainComponent implements OnInit {
   todoList: Observable<Todo[]>;
-  filter;
   constructor(private store: Store<AppState>) {
-    // store.select('todoList').subscribe((todos) => {
-    //   this.todoList = this.filterTodos(todos, this.filter);
-    // });
-
     this.todoList = store.select(getTodos);
-    store.select(getTodos).subscribe((todo) => {
-      console.log(todo);
-    });
   }
 
   ngOnInit(): void {}

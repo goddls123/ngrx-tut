@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getEvents } from '../action/notice.action';
+import { getEvents, getNotices } from '../action/notice.action';
 import { AppState } from '../app.state';
 import { Notice } from '../models/notice.model';
+import { getNotice } from '../selector/notice.selector';
 import { ApiService } from '../service/api.service';
 
 @Component({
@@ -20,8 +21,8 @@ export class NoticeComponent implements OnInit {
   _subPage: string;
   totalItems: number;
   subscriptions: Array<any> = [];
-  // noticies: Array<any>;
-  noticies: Observable<any>;
+  noticies: Array<any>;
+  // noticies: Observable<any>;
   selectedNotice: Notice;
 
   constructor(
@@ -40,12 +41,16 @@ export class NoticeComponent implements OnInit {
         }
       })
     );
-    // this.subscriptions.push(
-    //   this.store.select('noticies').subscribe((data) => {
-    //     this.noticies = data;
-    //   })
-    // );
-    this.noticies = this.store.select('noticies');
+    this.subscriptions.push(
+      this.store.select(getNotice).subscribe((data) => {
+        this.noticies = data;
+        this.totalItems = this.noticies[0]?.total ?? 0;
+        console.log(this.totalItems);
+        this.totalPage = Array(Math.ceil(this.totalItems / this.itemsPerPage))
+          .fill(1)
+          .map((x, i) => i + 1);
+      })
+    );
   }
 
   // todoList 호출하는 알고리즘 개선
@@ -53,7 +58,7 @@ export class NoticeComponent implements OnInit {
   set subPage(val) {
     if (val) {
       this._subPage = val;
-      if (val == 'list') {
+      if (val === 'list') {
         this.currentPage = this.currentPage ?? 1;
       }
     }
@@ -64,58 +69,14 @@ export class NoticeComponent implements OnInit {
 
   set currentPage(val) {
     if (val) {
-      if (this.mainPage === 'event') {
-        this.store.dispatch(
-          getEvents({ currentPage: val - 1, itemPerPage: this.itemsPerPage })
-        );
-        // this.apiService
-        //   .getEvents(val - 1, this.itemsPerPage)
-        //   .then((resp: any) => {
-        //     if (resp.status) {
-        //       this.noticies = resp.result;
-        //       this.totalItems = this.noticies[0]?.total ?? 0;
-        //       this.totalPage = Array(
-        //         Math.ceil(this.totalItems / this.itemsPerPage)
-        //       )
-        //         .fill(1)
-        //         .map((x, i) => i + 1);
-        //       this._currentPage = val;
-        //     } else {
-        //     }
-        //   });
-      } else if (this.mainPage === 'billiai-info') {
-        this.apiService
-          .getBilliaiInfos(val - 1, this.itemsPerPage)
-          .then((resp: any) => {
-            if (resp.status) {
-              this.noticies = resp.result;
-              this.totalItems = this.noticies[0]?.total ?? 0;
-              this.totalPage = Array(
-                Math.ceil(this.totalItems / this.itemsPerPage)
-              )
-                .fill(1)
-                .map((x, i) => i + 1);
-              this._currentPage = val;
-            } else {
-            }
-          });
-      } else if (this.mainPage === 'billiard-info') {
-        this.apiService
-          .getBilliardInfos(val - 1, this.itemsPerPage)
-          .then((resp: any) => {
-            if (resp.status) {
-              this.noticies = resp.result;
-              this.totalItems = this.noticies[0]?.total ?? 0;
-              this.totalPage = Array(
-                Math.ceil(this.totalItems / this.itemsPerPage)
-              )
-                .fill(1)
-                .map((x, i) => i + 1);
-              this._currentPage = val;
-            } else {
-            }
-          });
-      }
+      this.store.dispatch(
+        getNotices({
+          currentPage: val - 1,
+          itemPerPage: this.itemsPerPage,
+          mainPage: this.mainPage,
+        })
+      );
+      this._currentPage = val;
     }
   }
   getNoticeList(curentPage: number) {}

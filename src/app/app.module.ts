@@ -25,6 +25,9 @@ import { ApiService } from './service/api.service';
 import { EffectsModule } from '@ngrx/effects';
 import { NoticeEffects } from './effects/notice.effects';
 import { noticeReducer } from './reducer/notice.reducer';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { PaginationDirective } from './dirictive/pagination/pagination.directive';
+import { NoticeDetailComponent } from './notice/notice-detail/notice-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { noticeReducer } from './reducer/notice.reducer';
     MainComponent,
     NavbarComponent,
     NoticeComponent,
+    PaginationDirective,
+    NoticeDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +50,8 @@ import { noticeReducer } from './reducer/notice.reducer';
     StoreModule.forRoot({
       todoList: todoReducer,
       filter: filterReducer,
-      game: scoreboardReducer,
-      noticies: noticeReducer,
+      noticeState: noticeReducer,
+      router: routerReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -54,6 +59,7 @@ import { noticeReducer } from './reducer/notice.reducer';
       autoPause: true,
     }),
     EffectsModule.forRoot([NoticeEffects]),
+    StoreRouterConnectingModule.forRoot(),
     HttpClientModule,
   ],
   providers: [ApiService],

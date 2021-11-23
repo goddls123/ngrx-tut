@@ -21,7 +21,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let notice of noticies | async; let i = index"
+          *ngFor="let notice of noticies; let i = index"
           class="notice"
           (click)="gotoDetail(notice)"
         >
@@ -65,19 +65,19 @@
     </div>
 
     <div class="bottom-area">
-      <!-- <arv-pagination
+      <arv-pagination
         *ngIf="totalItems && totalItems > 0"
         [(currentPage)]="currentPage"
         [totalPage]="totalPage"
-      ></arv-pagination> -->
+      ></arv-pagination>
       <button class="main-btn" (click)="createNotice()">작성하기</button>
     </div>
   </ng-container>
-  <!-- <user-notice-detail
+  <user-notice-detail
     *ngSwitchCase="'detail'"
     [notice]="selectedNotice"
     [mainPage]="mainPage"
-  ></user-notice-detail> -->
+  ></user-notice-detail>
   <!-- <user-notice-edit
     *ngSwitchCase="'edit'"
     [notice]="selectedNotice"
